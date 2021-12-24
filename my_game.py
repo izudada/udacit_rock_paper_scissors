@@ -7,8 +7,8 @@ and reports both Player's scores each round."""
 
 moves = ['rock', 'paper', 'scissors']
 player_scores = {
-    "player1" : 0,
-    "player2" : 0
+    "player1": 0,
+    "player2": 0
 }
 
 print("Rock Paper Scissors, Go! ")
@@ -24,13 +24,14 @@ def print_pause(string):
 
 def beats(one, two):
     criteria = ''
-    # print_pause(f"You played {one}.")
-    # print_pause(f"Opponent played {two}.")
-    if (one == 'rock' and two == 'scissors') or (one =='scissors' and two == 'rock' ):
+    if (one == 'rock' and
+            two == 'scissors') or (one == 'scissors' and two == 'rock'):
         criteria = 'rock'
-    elif (one == 'paper' and two == 'scissors') or (one == 'scissors' and two == 'paper' ):
+    elif (one == 'paper' and
+            two == 'scissors') or (one == 'scissors' and two == 'paper'):
         criteria = 'scissors'
-    elif (one == 'paper' and two == 'rock') or (one == 'rock' and two == 'paper'):
+    elif (one == 'paper' and
+            two == 'rock') or (one == 'rock' and two == 'paper'):
         criteria = 'paper'
 
     if criteria == one:
@@ -39,10 +40,11 @@ def beats(one, two):
     elif criteria == two:
         print("** PLAYER TWO WINS **")
         player_scores['player2'] += 1
-    elif one ==  two:
+    elif one == two:
         print_pause("It's a tie")
-    
-    print_pause(f"Score: Player One {player_scores['player1']} , Player Two {player_scores['player2']}")
+
+    print_pause(f"Score: Player One {player_scores['player1']} , "
+                "Player Two {player_scores['player2']}")
 
 
 class Player:
@@ -57,17 +59,21 @@ class Player:
 
 
 class RandomPlayer(Player):
+    def __init__(self):
+        self.opponent_moves = []
+
     def move(self):
         return random.choice(moves)
 
     def learn(self, my_move, their_move):
-        beats(my_move, their_move)
+        self.opponent_moves.append()
 
 
 class HumanPlayer(RandomPlayer):
     def move(self):
         human_input = input("Rock, paper, scissors? > ")
         return human_input
+
 
 class Game:
     def __init__(self, p1, p2):
@@ -84,7 +90,7 @@ class Game:
 
     def play_game(self):
         print("Game start!")
-        for round in range(1,4):
+        for round in range(1, 4):
             print(f"Round {round}:")
             self.play_round()
         print("Game over!")
