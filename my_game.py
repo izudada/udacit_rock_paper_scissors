@@ -43,8 +43,8 @@ def beats(one, two):
     elif one == two:
         print_pause("It's a tie")
 
-    print_pause(f"Score: Player One {player_scores['player1']} , "
-                "Player Two {player_scores['player2']}")
+    print_pause("""Score: Player One {} , Player Two {}
+            """.format(player_scores['player1'], player_scores['player2']))
 
 
 class Player:
@@ -64,9 +64,6 @@ class RandomPlayer(Player):
 
     def move(self):
         return random.choice(moves)
-
-    def learn(self, my_move, their_move):
-        self.opponent_moves.append()
 
 
 class HumanPlayer(RandomPlayer):
