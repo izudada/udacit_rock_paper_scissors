@@ -125,13 +125,13 @@ class CyclePlayer(RandomPlayer):
     """
     def __init__(self):
         self.moves = []
+        self.count = 0
 
     def move(self):
-        new_move = random.choice(moves)
-        if new_move in moves:
-            new_move = random.choice(moves)
+        while True:
+            self.count = (self.count + 1) % 3
 
-        return new_move
+            return moves[self.count]
 
     def learn(self, my_move, their_move):
         self.moves.append(my_move)
