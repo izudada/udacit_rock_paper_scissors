@@ -23,6 +23,10 @@ def print_pause(string):
 
 
 def beats(one, two):
+    """
+        A function that determines
+        who wins and who losses
+    """
     criteria = ''
     if (one == 'rock' and
             two == 'scissors') or (one == 'scissors' and two == 'rock'):
@@ -48,6 +52,9 @@ def beats(one, two):
 
 
 class Player:
+    """
+        A player blueprint
+    """
     def __init__(self):
         self.score = 0
 
@@ -59,11 +66,19 @@ class Player:
 
 
 class RandomPlayer(Player):
+    """
+        A random player whose move
+        is chosen at random
+    """
     def move(self):
         return random.choice(moves)
 
 
 class HumanPlayer(RandomPlayer):
+    """
+        Human player that enter a move
+        to play a round
+    """
 
     def user_input(self):
         human_input = input("Rock, paper, scissors? > ").lower()
@@ -78,6 +93,10 @@ class HumanPlayer(RandomPlayer):
 
 
 class ReflectPlayer(RandomPlayer):
+    """
+        A player that makes a move depending
+        what the previous oppponent's move was
+    """
     def __init__(self):
         self.opponent_moves = ''
 
@@ -92,6 +111,14 @@ class ReflectPlayer(RandomPlayer):
 
 
 class CyclePlayer(RandomPlayer):
+    """
+        A class with the behaviour to
+        recall its previous move and
+        choose a different move in
+        the following round.
+        For the first move, it is chosen
+        at random.
+    """
     def __init__(self):
         self.moves = []
 
@@ -107,11 +134,22 @@ class CyclePlayer(RandomPlayer):
 
 
 class Game:
+    """
+        Game class that takes care of the
+        sequence of operation of the game
+    """
     def __init__(self, p1, p2):
+        """
+            A constructor that creates two
+            player when instantiated
+        """
         self.p1 = p1
         self.p2 = p2
 
     def play_round(self):
+        """
+            Method that executes per round
+        """
         move1 = self.p1.move()
         move2 = self.p2.move()
         print(f"You played {move1} Opponent played {move2}")
@@ -120,6 +158,10 @@ class Game:
         self.p2.learn(move2, move1)
 
     def play_game(self):
+        """
+            Method for for all rounds of
+            an entire game session
+        """
         print("Game start!")
         for round in range(1, 4):
             print(f"Round {round}:")
@@ -127,6 +169,7 @@ class Game:
         print("Game over!")
 
 
+#   Code to run if this file was executed directly without importing it
 if __name__ == '__main__':
     game = Game(HumanPlayer(), CyclePlayer())
     game.play_game()
