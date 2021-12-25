@@ -149,6 +149,7 @@ class Game:
         """
         self.p1 = p1
         self.p2 = p2
+        self.rounds = range(0, 3)
 
     def play_round(self):
         """
@@ -167,7 +168,7 @@ class Game:
             an entire game session
         """
         print("Game start!")
-        for round in range(1, 4):
+        for round in self.rounds:
             print(f"Round {round}:")
             self.play_round()
         print("Game over!")
