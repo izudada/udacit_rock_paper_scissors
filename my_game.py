@@ -64,9 +64,17 @@ class RandomPlayer(Player):
 
 
 class HumanPlayer(RandomPlayer):
-    def move(self):
-        human_input = input("Rock, paper, scissors? > ")
+
+    def user_input(self):
+        human_input = input("Rock, paper, scissors? > ").lower()
         return human_input
+
+    def move(self):
+        user_data = self.user_input()
+        if user_data not in moves:
+            user_data = self.move()
+
+        return user_data
 
 
 class ReflectPlayer(RandomPlayer):
@@ -120,5 +128,5 @@ class Game:
 
 
 if __name__ == '__main__':
-    game = Game(HumanPlayer(), ReflectPlayer())
+    game = Game(HumanPlayer(), CyclePlayer())
     game.play_game()
