@@ -22,6 +22,11 @@ def print_pause(string):
     time.sleep(1)
 
 
+def game_score():
+    print_pause("""Score: Player One {} , Player Two {}
+        """.format(player_scores['player1'], player_scores['player2']))
+
+
 def beats(one, two):
     """
         A function that determines
@@ -47,8 +52,7 @@ def beats(one, two):
     elif one == two:
         print_pause("It's a tie")
 
-    print_pause("""Score: Player One {} , Player Two {}
-            """.format(player_scores['player1'], player_scores['player2']))
+    game_score()
 
 
 class Player:
@@ -167,6 +171,7 @@ class Game:
             print(f"Round {round}:")
             self.play_round()
         print("Game over!")
+        game_score()
 
 
 #   Code to run if this file was executed directly without importing it
